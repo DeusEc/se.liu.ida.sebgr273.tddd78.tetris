@@ -6,6 +6,7 @@ package se.liu.ida.sebgr273.tdd78;
 public class BoardToTextConverter {
     public static String convertToText(Board board){
         StringBuilder builder = new StringBuilder();
+        Poly poly = board.getFallingPoly();
 
         for(int i = 0; i < board.getHeight(); i++){
             for(int j = 0; j < board.getWidth(); j++){

@@ -23,7 +23,7 @@ public class TetrominoMaker{
         int randNum = rand.nextInt(n);
         coordinates.generateCoordList(squareArray[randNum]);
         shape = generateShape(squareArray[randNum]);
-        drawShape(coordinates, squareArray[randNum]);
+        fillShape(coordinates, squareArray[randNum]);
         return new Poly(shape);
     }
 
@@ -37,6 +37,8 @@ public class TetrominoMaker{
             case Z:
             case T:
                 return new SquareType[3][3];
+            case O:
+                return new SquareType[2][2];
             default:
                 return new SquareType[1][1];
         }
@@ -50,7 +52,8 @@ public class TetrominoMaker{
         }
     }
 
-    private void drawShape(Coordinates coordinates, SquareType square){
+    private void fillShape(Coordinates coordinates, SquareType square){
+        emptyFillShape();
         for (Point point : coordinates) {
             shape[point.x][point.y] = square;
         }

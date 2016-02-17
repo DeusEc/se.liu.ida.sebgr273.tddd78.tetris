@@ -18,12 +18,16 @@ public class Board {
     }
 
     private int width, height;
-    private Poly falling;
+    private Poly fallingPoly = null;
+    private int fallingX, fallingY;
 
     public Board(int height, int width) {
         this.width = width;
         this.height = height;
         this.squares = new SquareType[height][width];
+        this.fallingPoly = spawnPoly();
+        this.fallingX = width/2 - 1;
+        this.fallingY = 1;
 
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
@@ -32,15 +36,31 @@ public class Board {
         }
     }
 
+    public Poly getFallingPoly() {
+        return fallingPoly;
+    }
+
+    public int getFallingX() {
+        return fallingX;
+    }
+
+    public int getFallingY() {
+        return fallingY;
+    }
+
     public void randomizeBoard(){
         SquareType[] squareArray = SquareType.values();
         Random random = new Random();
-        for(int i = 0; i < height; i++){
-            for (int j = 0; j < width; j++){
-                squares[i][j] = squareArray[random.nextInt(squareArray.length)];
+        for(int row = 0; row < height; row++){
+            for (int column = 0; column < width; column++){
+                squares[row][column] = squareArray[random.nextInt(squareArray.length)];
             }
         }
+    }
 
+    private Poly spawnPoly(){
+        TetrominoMaker tetrominoMaker = new TetrominoMaker();
+        return tetrominoMaker.getPoly(tetrominoMaker.getNumberOfTypes());
     }
 
     public SquareType getSquareType(int x, int y){
