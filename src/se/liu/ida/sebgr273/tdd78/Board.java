@@ -26,12 +26,12 @@ public class Board {
         this.height = height;
         this.squares = new SquareType[height][width];
         this.fallingPoly = spawnPoly();
-        this.fallingX = width/2 - 1;
-        this.fallingY = 1;
+        this.fallingX = 0;
+        this.fallingY = 0;
 
-        for(int i = 0; i < height; i++){
-            for(int j = 0; j < width; j++){
-                squares[i][j] = SquareType.EMPTY;
+        for(int row = 0; row < height; row++){
+            for(int col = 0; col < width; col++){
+                squares[row][col] = SquareType.EMPTY;
             }
         }
     }
@@ -52,8 +52,20 @@ public class Board {
         SquareType[] squareArray = SquareType.values();
         Random random = new Random();
         for(int row = 0; row < height; row++){
-            for (int column = 0; column < width; column++){
-                squares[row][column] = squareArray[random.nextInt(squareArray.length)];
+            for (int col = 0; col < width; col++){
+                squares[row][col] = squareArray[random.nextInt(squareArray.length)];
+            }
+        }
+    }
+
+    public void addFalling(){
+        if(fallingPoly != null){
+            for(int row = 0; row < fallingPoly.getPolyHeight(); row++){
+                for(int col = 0; col < fallingPoly.getPolyWidth(); col++){
+                    if(fallingPoly.getPoly()[row][col] != SquareType.EMPTY) {
+                        squares[row][col] = fallingPoly.getPoly()[row][col];
+                    }
+                }
             }
         }
     }

@@ -8,37 +8,35 @@ public class BoardToTextConverter {
         StringBuilder builder = new StringBuilder();
         Poly poly = board.getFallingPoly();
 
-        for(int i = 0; i < board.getHeight(); i++){
-            for(int j = 0; j < board.getWidth(); j++){
-                switch (board.getSquareType(i, j)){
-                    case I:
-                        builder.append(" I ");
-                        break;
-                    case O:
-                        builder.append(" O ");
-                        break;
-                    case T:
-                        builder.append(" T ");
-                        break;
-                    case J:
-                        builder.append(" J ");
-                        break;
-                    case L:
-                        builder.append(" L ");
-                        break;
-                    case S:
-                        builder.append(" S ");
-                        break;
-                    case Z:
-                        builder.append(" Z ");
-                        break;
-                    default:
-                        builder.append("   ");
-                        break;
-                }
+        for(int col = 0; col < board.getHeight(); col++){
+            for(int row = 0; row < board.getWidth(); row++){
+                builder.append(getSymbol(board.getSquareType(col, row)));
             }
             builder.append("\n");
         }
         return builder.toString();
+    }
+
+    private static String getSymbol(SquareType squareType){
+        switch(squareType){
+            case I:
+                return("I");
+            case O:
+                return ("O");
+            case T:
+                return ("T");
+            case J:
+                return ("J");
+            case L:
+                return ("L");
+            case S:
+                return ("S");
+            case Z:
+                return ("Z");
+            case EMPTY:
+                return ("|");
+            default:
+                return (" ");
+        }
     }
 }

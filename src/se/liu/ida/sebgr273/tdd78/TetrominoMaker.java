@@ -24,7 +24,7 @@ public class TetrominoMaker{
         coordinates.generateCoordList(squareArray[randNum]);
         shape = generateShape(squareArray[randNum]);
         fillShape(coordinates, squareArray[randNum]);
-        return new Poly(shape);
+        return new Poly(shape, shape.length, shape[0].length);
     }
 
     private SquareType[][] generateShape(SquareType square){
@@ -39,8 +39,10 @@ public class TetrominoMaker{
                 return new SquareType[3][3];
             case O:
                 return new SquareType[2][2];
-            default:
+            case EMPTY:
                 return new SquareType[1][1];
+            default:
+                return new SquareType[0][0];
         }
     }
 

@@ -24,13 +24,13 @@ public class Coordinates implements Iterable<Point>{
                 return coordList;
             case O:
                 coordList.add(new Point(0, 0));
-                coordList.add(new Point(0, 1));
                 coordList.add(new Point(1, 0));
+                coordList.add(new Point(0, 1));
                 coordList.add(new Point(1, 1));
                 return coordList;
             case T:
-                coordList.add(new Point(0, 1));
-                for(int i = 0; i < 3; i++) coordList.add(new Point(1, i));
+                coordList.add(new Point(1, 0));
+                for(int i = 0; i < 3; i++) coordList.add(new Point(i, 1));
                 return coordList;
             case J:
                 coordList.add(new Point(0, 0));
@@ -41,9 +41,9 @@ public class Coordinates implements Iterable<Point>{
                 for(int i = 0; i < 3; i++) coordList.add(new Point(1, i));
                 return coordList;
             case S:
-                coordList.add(new Point(0, 1));
-                coordList.add(new Point(0, 2));
                 coordList.add(new Point(1, 0));
+                coordList.add(new Point(2, 0));
+                coordList.add(new Point(0, 1));
                 coordList.add(new Point(1, 1));
                 return coordList;
             case Z:
