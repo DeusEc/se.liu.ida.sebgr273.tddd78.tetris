@@ -17,7 +17,7 @@ public class Coordinates implements Iterable<Point>{
         return coordList.iterator();
     }
 
-    public ArrayList<Point> generateCoordList(SquareType square){
+    public List<Point> generateCoordList(SquareType square){
         switch (square){
             case I:
                 for(int i = 0; i < 4; i++) coordList.add(new Point(1, i));
@@ -29,8 +29,8 @@ public class Coordinates implements Iterable<Point>{
                 coordList.add(new Point(1, 1));
                 return coordList;
             case T:
-                coordList.add(new Point(1, 0));
-                for(int i = 0; i < 3; i++) coordList.add(new Point(i, 1));
+                coordList.add(new Point(0, 1));
+                for(int i = 0; i < 3; i++) coordList.add(new Point(1, i));
                 return coordList;
             case J:
                 coordList.add(new Point(0, 0));

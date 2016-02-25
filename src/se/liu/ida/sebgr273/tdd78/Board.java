@@ -1,6 +1,5 @@
 package se.liu.ida.sebgr273.tdd78;
 
-import javax.swing.*;
 import java.util.Random;
 
 /**
@@ -26,7 +25,7 @@ public class Board {
         this.height = height;
         this.squares = new SquareType[height][width];
         this.fallingPoly = spawnPoly();
-        this.fallingX = 0;
+        this.fallingX = width/2 - 2;
         this.fallingY = 0;
 
         for(int row = 0; row < height; row++){
@@ -53,7 +52,8 @@ public class Board {
         Random random = new Random();
         for(int row = 0; row < height; row++){
             for (int col = 0; col < width; col++){
-                squares[row][col] = squareArray[random.nextInt(squareArray.length)];
+                squares[row][col] = squareArray[random.nextInt(squareArray
+                        .length)];
             }
         }
     }
@@ -63,7 +63,8 @@ public class Board {
             for(int row = 0; row < fallingPoly.getPolyHeight(); row++){
                 for(int col = 0; col < fallingPoly.getPolyWidth(); col++){
                     if(fallingPoly.getPoly()[row][col] != SquareType.EMPTY) {
-                        squares[row][col] = fallingPoly.getPoly()[row][col];
+                        squares[row + fallingY][col + fallingX] = fallingPoly
+                                .getPoly()[row][col];
                     }
                 }
             }
